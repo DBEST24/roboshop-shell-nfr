@@ -32,3 +32,13 @@ PYTHON(){
   pip3 install -r requirements.txt
   SYSTEMD
 }
+
+MAVEN(){
+
+  dnf install maven -y
+
+  APP_PREPEQ
+  mvn clean package
+  mv target/$component-1.0.jar $component.jar
+  SYSTEMD
+}
