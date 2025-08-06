@@ -1,10 +1,5 @@
-NODEJS(){
-  dnf module disable nodejs -y
-  dnf module enable nodejs:20 -y
-  dnf install nodejs -y
-
+APP_PREPEQ(){
   cp $component.service /etc/systemd/system/$component.service
-
   useradd roboshop
   rm -rf /app
   mkdir /app
@@ -12,9 +7,28 @@ NODEJS(){
   cd /app
   unzip /tmp/$component.zip
 
-  cd /app
+}
+
+SYSTEMD(){
+
+    systemctl daemon-reload
+    systemctl enable $component
+    systemctl start $component
+}
+
+NODEJS(){
+  dnf module disable nodejs -y
+  dnf module enable nodejs:20 -y
+  dnf install nodejs -y
+  APP_PREPEQ
   npm install
-  systemctl daemon-reload
-  systemctl enable $component
-  systemctl start $component
+  SYSTEMD
+
+}
+
+PYTHON(){
+  dnf install python3 gcc python3-devel -y
+  APP_PREPEQ
+  pip3 install -r requirements.txt
+  SYSTEMD
 }
