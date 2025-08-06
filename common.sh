@@ -1,4 +1,4 @@
-APP_PREPEQ(){
+APP_PREREQ(){
   cp $component.service /etc/systemd/system/$component.service
   useradd roboshop
   rm -rf /app
@@ -20,7 +20,7 @@ NODEJS(){
   dnf module disable nodejs -y
   dnf module enable nodejs:20 -y
   dnf install nodejs -y
-  APP_PREPEQ
+  APP_PREREQ
   npm install
   SYSTEMD
 
@@ -28,7 +28,7 @@ NODEJS(){
 
 PYTHON(){
   dnf install python3 gcc python3-devel -y
-  APP_PREPEQ
+  APP_PREREQ
   pip3 install -r requirements.txt
   SYSTEMD
 }
@@ -37,7 +37,7 @@ MAVEN(){
 
   dnf install maven -y
 
-  APP_PREPEQ
+  APP_PREREQ
   mvn clean package
   mv target/$component-1.0.jar $component.jar
   SYSTEMD
