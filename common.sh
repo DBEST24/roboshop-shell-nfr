@@ -1,19 +1,19 @@
 APP_PREREQ(){
-  cp $component.service /etc/systemd/system/$component.service
+  cp $"component".service /etc/systemd/system/$"component".service
   useradd roboshop
   rm -rf /app
   mkdir /app
-  curl -L -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component-v3.zip
+  curl -L -o /tmp/$"component".zip https://roboshop-artifacts.s3.amazonaws.com/$"component"-v3.zip
   cd /app
-  unzip /tmp/$component.zip
+  unzip /tmp/$"component".zip
 
 }
 
 SYSTEMD(){
 
     systemctl daemon-reload
-    systemctl enable $component
-    systemctl start $component
+    systemctl enable $"component"
+    systemctl start $"component"
 }
 
 NODEJS(){
@@ -39,6 +39,6 @@ MAVEN(){
 
   APP_PREREQ
   mvn clean package
-  mv target/$component-1.0.jar $component.jar
+  mv target/$"component"-1.0.jar $"component".jar
   SYSTEMD
 }
