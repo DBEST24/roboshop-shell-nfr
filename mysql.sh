@@ -1,5 +1,6 @@
 if [ -z $1 ]; then
   echo Input Passowrd is missing
+  exit
 fi
 
 
