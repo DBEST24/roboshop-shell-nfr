@@ -8,5 +8,6 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 # create nginx file
 component=nginx
-systemd
+SYSTEMD
+
 
