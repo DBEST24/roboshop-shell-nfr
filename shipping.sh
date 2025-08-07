@@ -1,6 +1,6 @@
 if [ -z "$1" ]; then
   echo Input Password is missing
-  exit
+  exit 1
 fi
 
 
