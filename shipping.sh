@@ -10,8 +10,8 @@ MAVEN
 
 dnf install mysql -y
 
-# shellcheck disable=SC2034
-for file in schema app-user master-data; do
-  mysql -h mysql-dev.dbest24.ca -uroot -pS1 < /app/db/file.sql
-done
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
 
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql
+
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
